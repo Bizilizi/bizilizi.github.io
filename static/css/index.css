@@ -230,7 +230,7 @@ body {
 /* Paper preview link and image */
 .highlight-link {
   position: absolute;
-  width: 20%;
+  width: min(20%, 300px);
   right: 12%;                 /* distance from the right edge */
   bottom: -5px;               /* extend slightly below banner */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
