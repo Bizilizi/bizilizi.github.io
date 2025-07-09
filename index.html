@@ -34,53 +34,19 @@
 </head>
 <body>
 
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
+<!-- Wrapper -->
+<section class="banner is-flex is-align-items-center is-justify-content-center" style="height: 200px;">
+  <div class="column has-text-centered">
+    <h1 class="title is-1 publication-title"><span id="boar-emoji" class="boar-emoji">🐗</span> VGGSounder: Audio-Visual Evaluations for Foundation Models</h1>
   </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav> -->
-
+</section>
 
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">VGGSounder: Audio-Visual Evaluations for Foundation Models</h1>
+          <!-- <h1 class="title is-1 publication-title"><span id="boar-emoji" class="boar-emoji">🐗</span> VGGSounder: Audio-Visual Evaluations for Foundation Models</h1> -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://dzverev.com">Daniil Zverev</a><sup>*,1,2</sup>,</span>
@@ -113,15 +79,14 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="./static/workshop_paper.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a class="external-link button is-normal is-rounded is-dark is-disabled" disabled>
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper</span>
+                  <span>Paper - Coming Soon</span>
                 </a>
               </span>
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -129,7 +94,7 @@
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Video Link. -->
               <span class="link-block">
                 <a href="https://youtu.be/Ab4G6q_y8rs"
@@ -142,12 +107,11 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/Bizilizi/VGGSounder"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a class="external-link button is-normal is-rounded is-dark is-disabled" disabled>
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
+                  <span>Code - Coming Soon</span>
                   </a>
               </span>
               <!-- Dataset Link. -->
@@ -168,81 +132,6 @@
     </div>
   </div>
 </section>
-
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
-  </div>
-</section> -->
-
-
-<!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -278,19 +167,475 @@
       </div>
     </div>
     <!--/ Abstract. -->
-    <!-- Paper video. -->
+  </div>
+</section>
+
+<section class="video-examples">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Samples</h2>
+    <div class="video-carousel">
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/_-7I00cZUE0_000064.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">male speech, man speaking</span>
+              <span class="label audible">playing bass guitar</span>
+              <span class="label audible">playing drum kit</span>
+              <span class="label audible">playing electric guitar</span>
+              <span class="label audible meta">background music <span class="badge">Meta</span></span>
+              <span class="label audible meta">voice over <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label visible">sea waves</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">motorboat, speedboat acceleration <span class="badge">Original</span></span>
+              <span class="label both original">rowboat, canoe, kayak rowing </span>
+              <span class="label both">sloshing water</span>
+              <span class="label both">splashing water</span>
+              <span class="label both">spraying water</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/-0p7hKXZ1ww_000030.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">people sniggering</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both original">fireworks banging</span>
+              <span class="label both">footsteps on snow</span>
+            <span class="label both">lighting firecrackers</span>
+            <span class="label both">male speech, man speaking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/1LTxZ2aNytc_000030.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">people belly laughing</span>
+              <span class="label audible">people sniggering</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label visible">splashing water</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both original">dog barking</span>
+              <span class="label both">dog bow-wow</span>
+            <span class="label both">goat bleating</span>
+            <span class="label both">sea lion barking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/1ON1iLkUPp8_000040.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">playing bass guitar</span>
+              <span class="label audible">playing electronic organ</span>
+              <span class="label audible">playing glockenspiel</span>
+              <span class="label audible">playing marimba, xylophone</span>
+              <span class="label audible">playing piano</span>
+              <span class="label audible">playing synthesizer</span>
+              <span class="label audible">playing vibraphone</span>
+              <span class="label audible">background music <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label visible">static image <span class="badge">Meta</span></span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/1Z9lTtd7ReE_000014.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">male speech, man speaking</span>
+              <span class="label audible">voice over <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label visible">playing hockey</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">people booing</span>
+              <span class="label both">people cheering</span>
+              <span class="label both">people crowd</span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/2zSnJX82Uzc_000060.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">child speech, kid speaking</span>
+              <span class="label both">children shouting</span>
+              <span class="label both">male speech, man speaking</span>
+              <span class="label both">people belly laughing</span>
+              <span class="label both">people cheering</span>
+              <span class="label both">people crowd</span>
+              <span class="label both">people screaming</span>
+              <span class="label both">people sniggering</span>
+              <span class="label both">sloshing water</span>
+              <span class="label both">swimming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/5NyjOIjRKKM_000018.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">orchestra</span>
+              <span class="label audible">playing drum kit</span>
+              <span class="label audible">playing flute</span>
+              <span class="label audible">playing snare drum</span>
+              <span class="label audible">playing trombone</span>
+              <span class="label audible">playing trumpet</span>
+              <span class="label audible">playing violin, fiddle</span>
+              <span class="label audible meta">background music <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">dog barking</span>
+              <span class="label both">dog baying</span>
+              <span class="label both">dog bow-wow</span>
+              <span class="label both">dog growling</span>
+              <span class="label both">dog howling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/6xlLMbiEsIM_000030.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">cricket chirping</span>
+              <span class="label audible">female speech, woman speaking</span>
+              <span class="label audible">fly, housefly buzzing</span>
+              <span class="label audible">frog croaking</span>
+              <span class="label audible">owl hooting</span>
+              <span class="label audible">wind noise</span>
+              <span class="label audible">wind rustling leaves</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">bird chirping, tweeting</span>
+              <span class="label both">fire crackling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/M5rWO2qL6WQ_000023.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">engine accelerating, revving, vroom</span>
+              <span class="label audible">female speech, woman speaking</span>
+              <span class="label audible">male speech, man speaking</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">motorboat, speedboat acceleration</span>
+              <span class="label both original">people screaming</span>
+              <span class="label both">rowboat, canoe, kayak rowing</span>
+              <span class="label both">splashing water</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <!-- Paper video. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Video</h2>
+      <div class="publication-video">
+        <iframe src="https://www.youtube.com/embed/Ab4G6q_y8rs?rel=0&amp;showinfo=0"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!--/ Paper video. -->
+</section>
+  
+<!-- <section class="section" style="background: #f8f9fa;">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/Ab4G6q_y8rs?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified" style="margin-bottom: 2rem;">
+          <p>
+            We report multi-label classification metrics (subset accuracy, F₁-score, Hit accuracy, modality confusion (μ)) for audio (<em>A</em>), visual (<em>V</em>), audio-visual (<em>AV</em>), audio-only (<em>A¬V</em>), and visual-only (<em>V¬A</em>) inputs. The embedding models CAV-MAE, DeepAVFusion, and Equi-AV were fine-tuned on the VGGSound training set. We report metrics for k=1 here and for other k in the additional quantitative analysis section. The closed-source multi-modal foundation models Gemini and open-sourced models use a zero-shot evaluation protocol and LLM-assisted protocol respectively.
+          </p>
+        </div>
+        <div class="table-gallery-nav" style="margin-bottom: 2rem;">
+          <div class="tabs is-centered is-boxed">
+
+            <ul>
+              <li class="is-active" data-table="main-results">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-chart-bar"></i></span>
+                  <span>Main Results</span>
+                </a>
+              </li>
+              <li data-table="no-background-music">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-layer-group"></i></span>
+                  <span>Without Background Music</span>
+                </a>
+              </li>
+              <li data-table="no-voice-over">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-eye"></i></span>
+                  <span>Without Voice Over</span>
+                </a>
+              </li>
+              <li data-table="no-static-image">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-eye"></i></span>
+                  <span>Without Static Image</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-gallery-content">
         </div>
       </div>
     </div>
-    <!--/ Paper video. -->
   </div>
-</section>
+</section> -->
 
 
 
@@ -305,28 +650,28 @@
   </div>
 </section>
 
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/workshop_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/Bizilizi/VGGSounder" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8 has-text-centered">
-        <div class="content">
-          <p>
-            Developed with template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-          </p>
-        </div>
-      </div>
+<footer>
+  <section class="banner">
+    <!-- Scrolling images -->
+  <div class="scrolling-container">
+    <div class="scrolling-images">
+      <img src="./static/images/supporters/TUM.png" alt="TUM">
+      <img src="./static/images/supporters/Tubingen.png" alt="Tübingen">
+      <img src="./static/images/supporters/MCML.png" alt="MCML">
+      <img src="./static/images/supporters/Max Plank.png" alt="Max Planck">
+      <img src="./static/images/supporters/ELLIS.png" alt="ELLIS">
+      <!-- Duplicate for seamless loop -->
+      <img src="./static/images/supporters/TUM.png" alt="TUM">
+      <img src="./static/images/supporters/Tubingen.png" alt="Tübingen">
+      <img src="./static/images/supporters/MCML.png" alt="MCML">
+      <img src="./static/images/supporters/Max Plank.png" alt="Max Planck">
+      <img src="./static/images/supporters/ELLIS.png" alt="ELLIS">
     </div>
   </div>
+  <a href="." target="_blank" class="highlight-link">
+    <img src="./static/images/VGGSounder_Preview.png" class="highlight" alt="Click to view paper">
+  </a>
+  </section>
 </footer>
 
 </body>

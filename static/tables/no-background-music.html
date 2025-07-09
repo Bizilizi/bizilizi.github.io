@@ -1,0 +1,233 @@
+<div class="table-container" style="overflow-x: auto; display: flex; justify-content: center;">
+  <table class="table is-bordered is-striped is-narrow is-hoverable" style="font-size: 0.85em; margin: 0 auto;">
+    <thead>
+      <tr>
+        <th rowspan="2" style="vertical-align: middle;"><strong>Model</strong></th>
+        <th colspan="3" style="text-align: center;"><strong>Subset Accuracy</strong> <small>Δ</small></th>
+        <th colspan="5" style="text-align: center;"><strong>F₁</strong> <small>Δ</small></th>
+        <th colspan="3" style="text-align: center;"><strong>Hit</strong> <small>Δ</small></th>
+        <th colspan="3" style="text-align: center;"><strong>μ</strong> <small>Δ</small></th>
+      </tr>
+      <tr>
+        <th style="text-align: center;"><em>a</em></th>
+        <th style="text-align: center;"><em>v</em></th>
+        <th style="text-align: center;"><em>av</em></th>
+        <th style="text-align: center;"><em>a</em></th>
+        <th style="text-align: center;"><em>v</em></th>
+        <th style="text-align: center;"><em>av</em></th>
+        <th style="text-align: center;"><em>a¬v</em></th>
+        <th style="text-align: center;"><em>v¬a</em></th>
+        <th style="text-align: center;"><em>a</em></th>
+        <th style="text-align: center;"><em>v</em></th>
+        <th style="text-align: center;"><em>av</em></th>
+        <th style="text-align: center;"><em>μ<sub>a</sub></em></th>
+        <th style="text-align: center;"><em>μ<sub>v</sub></em></th>
+        <th style="text-align: center;"><em>μ<sub>a∩v</sub></em></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background-color: #f5f5f5;">
+        <td colspan="15"><strong><em>Embedding Models</em></strong></td>
+      </tr>
+      <tr>
+        <td>CAV-MAE</td>
+        <td style="text-align: center;">-1.21</td>
+        <td style="text-align: center;">0.10</td>
+        <td style="text-align: center;">-0.04</td>
+        <td style="text-align: center;">-1.75</td>
+        <td style="text-align: center;">-0.51</td>
+        <td style="text-align: center;">-0.62</td>
+        <td style="text-align: center;">-0.11</td>
+        <td style="text-align: center;">-0.98</td>
+        <td style="text-align: center;">-1.72</td>
+        <td style="text-align: center;">-1.20</td>
+        <td style="text-align: center;">-1.49</td>
+        <td style="text-align: center;">-0.04</td>
+        <td style="text-align: center;"><strong>0.05</strong></td>
+        <td style="text-align: center;">-0.00</td>
+      </tr>
+      <tr>
+        <td>DeepAVFusion</td>
+        <td style="text-align: center;">-0.84</td>
+        <td style="text-align: center;">-0.35</td>
+        <td style="text-align: center;">-0.10</td>
+        <td style="text-align: center;">-1.56</td>
+        <td style="text-align: center;">-0.76</td>
+        <td style="text-align: center;">-0.79</td>
+        <td style="text-align: center;">-0.05</td>
+        <td style="text-align: center;">-1.03</td>
+        <td style="text-align: center;">-1.70</td>
+        <td style="text-align: center;">-1.35</td>
+        <td style="text-align: center;">-1.64</td>
+        <td style="text-align: center;">-0.18</td>
+        <td style="text-align: center;">-0.01</td>
+        <td style="text-align: center;">-0.02</td>
+      </tr>
+      <tr>
+        <td>Equi-AV</td>
+        <td style="text-align: center;">-1.16</td>
+        <td style="text-align: center;">-0.15</td>
+        <td style="text-align: center;">-0.16</td>
+        <td style="text-align: center;">-1.76</td>
+        <td style="text-align: center;">-0.50</td>
+        <td style="text-align: center;">-0.72</td>
+        <td style="text-align: center;">-0.47</td>
+        <td style="text-align: center;">-2.44</td>
+        <td style="text-align: center;">-1.90</td>
+        <td style="text-align: center;">-0.99</td>
+        <td style="text-align: center;">-1.51</td>
+        <td style="text-align: center;">-0.14</td>
+        <td style="text-align: center;">-0.13</td>
+        <td style="text-align: center;">-0.05</td>
+      </tr>
+      <tr>
+        <td>AV-Siam</td>
+        <td style="text-align: center;">-1.22</td>
+        <td style="text-align: center;">-0.19</td>
+        <td style="text-align: center;">-0.28</td>
+        <td style="text-align: center;">-1.70</td>
+        <td style="text-align: center;">-0.73</td>
+        <td style="text-align: center;">-0.88</td>
+        <td style="text-align: center;"><strong>0.06</strong></td>
+        <td style="text-align: center;"><strong>0.02</strong></td>
+        <td style="text-align: center;">-1.67</td>
+        <td style="text-align: center;">-1.51</td>
+        <td style="text-align: center;">-1.79</td>
+        <td style="text-align: center;"><strong>0.02</strong></td>
+        <td style="text-align: center;">-0.05</td>
+        <td style="text-align: center;">-0.10</td>
+      </tr>
+      <tr style="background-color: #f5f5f5;">
+        <td colspan="15"><strong><em>Closed-source Foundation Models</em></strong></td>
+      </tr>
+      <tr>
+        <td>Gemini 1.5 Flash</td>
+        <td style="text-align: center;">-0.11</td>
+        <td style="text-align: center;"><strong>0.09</strong></td>
+        <td style="text-align: center;">-0.11</td>
+        <td style="text-align: center;"><strong>0.19</strong></td>
+        <td style="text-align: center;">-0.31</td>
+        <td style="text-align: center;">-0.48</td>
+        <td style="text-align: center;">-1.36</td>
+        <td style="text-align: center;"><strong>0.14</strong></td>
+        <td style="text-align: center;"><strong>0.66</strong></td>
+        <td style="text-align: center;">-0.46</td>
+        <td style="text-align: center;">-0.85</td>
+        <td style="text-align: center;"><strong>0.65</strong></td>
+        <td style="text-align: center;">-0.10</td>
+        <td style="text-align: center;"><strong>0.02</strong></td>
+      </tr>
+      <tr>
+        <td>Gemini 1.5 Pro</td>
+        <td style="text-align: center;">-0.10</td>
+        <td style="text-align: center;"><strong>0.36</strong></td>
+        <td style="text-align: center;"><strong>0.20</strong></td>
+        <td style="text-align: center;"><strong>0.09</strong></td>
+        <td style="text-align: center;">-0.20</td>
+        <td style="text-align: center;">-0.25</td>
+        <td style="text-align: center;">-1.55</td>
+        <td style="text-align: center;"><strong>0.55</strong></td>
+        <td style="text-align: center;"><strong>0.78</strong></td>
+        <td style="text-align: center;">-0.52</td>
+        <td style="text-align: center;">-0.54</td>
+        <td style="text-align: center;"><strong>0.29</strong></td>
+        <td style="text-align: center;">-0.05</td>
+        <td style="text-align: center;"><strong>0.12</strong></td>
+      </tr>
+      <tr>
+        <td>Gemini 2.0 Flash</td>
+        <td style="text-align: center;">-0.26</td>
+        <td style="text-align: center;">-0.11</td>
+        <td style="text-align: center;">-0.31</td>
+        <td style="text-align: center;">-0.11</td>
+        <td style="text-align: center;">-0.27</td>
+        <td style="text-align: center;">-0.42</td>
+        <td style="text-align: center;"><strong>1.24</strong></td>
+        <td style="text-align: center;">-0.38</td>
+        <td style="text-align: center;"><strong>0.22</strong></td>
+        <td style="text-align: center;">-0.63</td>
+        <td style="text-align: center;">-0.55</td>
+        <td style="text-align: center;">-0.06</td>
+        <td style="text-align: center;">-0.16</td>
+        <td style="text-align: center;">-0.03</td>
+      </tr>
+      <tr style="background-color: #f5f5f5;">
+        <td colspan="15"><strong><em>Open-source Foundation Models</em></strong></td>
+      </tr>
+      <tr>
+        <td>VideoLLaMA 2</td>
+        <td style="text-align: center;">-0.53</td>
+        <td style="text-align: center;"><strong>0.04</strong></td>
+        <td style="text-align: center;"><strong>0.08</strong></td>
+        <td style="text-align: center;">-0.93</td>
+        <td style="text-align: center;">-0.23</td>
+        <td style="text-align: center;">-0.23</td>
+        <td style="text-align: center;">-0.09</td>
+        <td style="text-align: center;"><strong>1.73</strong></td>
+        <td style="text-align: center;">-0.67</td>
+        <td style="text-align: center;">-0.58</td>
+        <td style="text-align: center;">-0.78</td>
+        <td style="text-align: center;"><strong>0.43</strong></td>
+        <td style="text-align: center;"><strong>0.09</strong></td>
+        <td style="text-align: center;"><strong>0.02</strong></td>
+      </tr>
+      <tr>
+        <td>Unified-IO 2</td>
+        <td style="text-align: center;">-1.04</td>
+        <td style="text-align: center;"><strong>0.20</strong></td>
+        <td style="text-align: center;">-0.13</td>
+        <td style="text-align: center;">-1.95</td>
+        <td style="text-align: center;"><strong>0.06</strong></td>
+        <td style="text-align: center;">-0.64</td>
+        <td style="text-align: center;">-0.90</td>
+        <td style="text-align: center;">-0.33</td>
+        <td style="text-align: center;">-2.14</td>
+        <td style="text-align: center;">-0.37</td>
+        <td style="text-align: center;">-2.05</td>
+        <td style="text-align: center;">-0.44</td>
+        <td style="text-align: center;"><strong>0.10</strong></td>
+        <td style="text-align: center;">-0.12</td>
+      </tr>
+      <tr>
+        <td>PandaGPT</td>
+        <td style="text-align: center;">-0.55</td>
+        <td style="text-align: center;"><strong>0.42</strong></td>
+        <td style="text-align: center;"><strong>0.41</strong></td>
+        <td style="text-align: center;">-1.54</td>
+        <td style="text-align: center;">-0.10</td>
+        <td style="text-align: center;">-0.04</td>
+        <td style="text-align: center;">-3.00</td>
+        <td style="text-align: center;"><strong>0.84</strong></td>
+        <td style="text-align: center;">-0.70</td>
+        <td style="text-align: center;">-0.20</td>
+        <td style="text-align: center;">-0.25</td>
+        <td style="text-align: center;">-0.15</td>
+        <td style="text-align: center;">-0.10</td>
+        <td style="text-align: center;">-0.10</td>
+      </tr>
+      <tr>
+        <td>OLA</td>
+        <td style="text-align: center;">-1.21</td>
+        <td style="text-align: center;"><strong>0.25</strong></td>
+        <td style="text-align: center;"><strong>0.02</strong></td>
+        <td style="text-align: center;">-1.79</td>
+        <td style="text-align: center;"><strong>0.15</strong></td>
+        <td style="text-align: center;">-0.12</td>
+        <td style="text-align: center;">-3.46</td>
+        <td style="text-align: center;"><strong>2.10</strong></td>
+        <td style="text-align: center;">-1.29</td>
+        <td style="text-align: center;"><strong>0.12</strong></td>
+        <td style="text-align: center;">-0.36</td>
+        <td style="text-align: center;">-0.52</td>
+        <td style="text-align: center;"><strong>0.17</strong></td>
+        <td style="text-align: center;">-0.09</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="content has-text-justified" style="margin-bottom: 2rem;">
+  <p>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+  </p>
+</div> 
