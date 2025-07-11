@@ -228,6 +228,16 @@
 
 <div class="content has-text-justified" style="margin-bottom: 2rem;">
   <p>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    (i) Universal but modality-specific gains. Every method improves in terms of F1 and Hit scores when the soundtrack is removed, that is especially clear for the audio input modality
+  </p>
+  <p>
+    (ii) Same trend for foundation models, but with caveats. Foundation checkpoints with a meaningful audio encoder echo the
+    pattern; in contrast, the Gemini family remains audio-weak, suggesting that their publicly released models rely heavily on vision.
+  </p>
+  <p>
+    (iii) Intuition. Background music tends to mask class-specific foreground sounds; once that mask is removed the audio
+    encoder can finally “hear” discriminative cues, whereas vision—being agnostic to the soundtrack—is affected only by the
+    changed clip mix. With noisy audio, every model relies more on the V modality as a safety net, which explains why their
+    baseline performance remains respectable despite the severe audio corruption.
   </p>
 </div> 

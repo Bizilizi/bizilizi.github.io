@@ -2,6 +2,14 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
 
 .footer .icon-link {
     font-size: 25px;
@@ -191,6 +199,55 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle bottom shadow */
 }
 
+/* Mobile banner adjustments */
+@media (max-width: 768px) {
+  .banner {
+    height: 180px;
+    padding: 10px;
+  }
+  
+  /* Title responsiveness for initial banner */
+  .banner .title.is-1,
+  .publication-title {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    padding: 0 15px;
+    text-align: center;
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+  
+  .banner .column {
+    padding: 10px !important;
+  }
+  
+  /* Initial banner section responsiveness */
+  .banner.is-flex {
+    min-height: 140px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: 160px;
+  }
+  
+  .banner .title.is-1,
+  .publication-title {
+    font-size: 1.4rem !important;
+    line-height: 1.1 !important;
+    padding: 0 10px;
+  }
+  
+  .banner.is-flex {
+    min-height: 120px;
+    padding: 5px;
+  }
+}
+
 /* Scrolling images container */
 .scrolling-container {
   position: absolute;
@@ -243,6 +300,23 @@ body {
 
 .highlight-link:hover {
   transform: translateY(-5px); /* move up on hover - stays connected to banner */
+}
+
+/* Mobile paper preview improvements */
+@media (max-width: 768px) {
+  .highlight-link {
+    width: min(40%, 200px);    /* Larger on mobile */
+    right: 5%;                 /* Closer to edge */
+    bottom: -10px;             /* More overlap */
+  }
+}
+
+@media (max-width: 480px) {
+  .highlight-link {
+    width: min(45%, 180px);    /* Even larger on small phones */
+    right: 3%;
+    bottom: -8px;
+  }
 }
 
 .highlight{
@@ -468,4 +542,304 @@ body {
 .button.is-disabled:hover {
   background-color: #dbdbdb !important;
   color: #7a7a7a !important;
+}
+
+/* Mobile-responsive video examples */
+@media (max-width: 768px) {
+  .video-examples {
+    padding: 40px 0;
+  }
+  
+  .video-carousel {
+    gap: 20px;
+    padding: 15px 20px;
+  }
+  
+  .video-example {
+    flex: 0 0 320px;           /* Smaller cards on mobile */
+  }
+  
+  .video-container {
+    height: 180px;             /* Adjust video height */
+  }
+  
+  .labels-container {
+    padding: 15px;
+  }
+  
+  .category-header {
+    font-size: 15px;          /* Slightly larger for mobile */
+  }
+  
+  .label {
+    font-size: 13px;          /* Larger text for mobile */
+    height: 32px;             /* Larger touch targets */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .badge {
+    font-size: 11px;
+    padding: 3px 7px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-example {
+    flex: 0 0 280px;           /* Even smaller on phones */
+  }
+  
+  .video-container {
+    height: 160px;
+  }
+  
+  .labels-container {
+    padding: 12px;
+  }
+  
+  .label {
+    font-size: 14px;          /* Larger for small screens */
+    height: 34px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Mobile-responsive publication section */
+@media (max-width: 768px) {
+  .hero-body {
+    padding: 1.5rem !important;
+  }
+  
+  .publication-authors {
+    font-size: 0.9rem;
+  }
+  
+  .author-block {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  .publication-links .link-block {
+    margin: 5px 3px;
+  }
+  
+  .button {
+    font-size: 0.9rem;
+    padding: 12px 16px;        /* Larger touch targets */
+    min-height: 44px;          /* iOS touch target guidelines */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-body {
+    padding: 1rem !important;
+  }
+  
+  .publication-authors {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .publication-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .link-block {
+    width: 100%;
+    max-width: 200px;
+    margin: 3px 0 !important;
+  }
+  
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Mobile-responsive abstract section */
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .container.is-max-desktop {
+    max-width: 100% !important;
+    padding: 0 15px;
+  }
+  
+  .content p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .title.is-3 {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .container.is-max-desktop {
+    padding: 0 10px;
+  }
+  
+  .content p {
+    font-size: 0.95rem;
+  }
+  
+  .title.is-3 {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* Mobile-responsive video iframe */
+@media (max-width: 768px) {
+  .publication-video {
+    margin: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .publication-video {
+    margin: 0 10px;
+  }
+}
+
+/* Mobile scrolling images adjustments */
+@media (max-width: 768px) {
+  .scrolling-container {
+    height: 40px;              /* Smaller height on mobile */
+  }
+  
+  .scrolling-images img {
+    margin-right: 30px;        /* Tighter spacing */
+  }
+}
+
+@media (max-width: 480px) {
+  .scrolling-container {
+    height: 35px;
+  }
+  
+  .scrolling-images img {
+    margin-right: 25px;
+  }
+}
+
+/* Mobile BibTeX section */
+@media (max-width: 768px) {
+  #BibTeX pre {
+    font-size: 0.8rem;
+    padding: 15px;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  #BibTeX pre {
+    font-size: 0.75rem;
+    padding: 12px;
+  }
+}
+
+/* General mobile touch improvements */
+@media (max-width: 768px) {
+  /* Ensure all clickable elements meet minimum touch target size */
+  a, button, .label, .button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Better spacing for mobile */
+  .columns {
+    margin: 0 !important;
+  }
+  
+  .column {
+    padding: 0.5rem !important;
+  }
+  
+  /* Smooth scrolling for mobile */
+  .video-carousel {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .video-example {
+    scroll-snap-align: start;
+  }
+  
+  /* Improve mobile navigation */
+  .table-gallery-nav .tabs {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Better mobile typography */
+  .publication-title {
+    word-break: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+  
+  /* Improve mobile interactions */
+  .boar-emoji {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Better mobile video controls */
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Mobile-friendly scrollbars */
+  .video-carousel::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .video-carousel::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+  
+  .video-carousel::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+  .banner .title.is-1,
+  .publication-title {
+    font-size: 1.2rem !important;
+    line-height: 1.1 !important;
+  }
+  
+  .video-example {
+    flex: 0 0 260px;
+  }
+  
+  .video-container {
+    height: 146px;
+  }
+  
+  .highlight-link {
+    width: min(50%, 160px);
+    right: 2%;
+  }
 }
