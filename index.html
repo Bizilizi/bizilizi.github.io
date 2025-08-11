@@ -108,11 +108,12 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark is-disabled" disabled>
+                <a href="https://github.com/Bizilizi/VGGSounder"
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code - Coming Soon</span>
+                  <span>Code</span>
                   </a>
               </span>
               <!-- Dataset Link. -->
@@ -142,27 +143,19 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Designing effective foundation models requires high-quality
-            Designing effective foundation models requires high-quality
-            evaluation datasets. With the emergence of audio-visual
-            foundation models, reliable assessment of their multi-modal
-            understanding is essential. The current gold standard for
-            evaluating audio-visual understanding is the popular clas-
-            sification dataset VGGSound. However, our analysis iden-
-            tifies several critical issues in VGGSound, including in-
-            complete labelling, partially overlapping classes, and mis-
-            aligned modalities. These flaws lead to distorted evalua-
-            tions of models’ true auditory and visual capabilities. To
-            address these limitations, we introduce VGGSounder, a
-            comprehensively re-annotated, multi-label test set extend-
-            ing VGGSound that is explicitly designed to accurately
-            evaluate audio-visual foundation models. VGGSounder
-            features detailed modality annotations, enabling precise
-            analyses of modality-specific performance and reveal-
-            ing previously unnoticed model limitations. We believe
-            VGGSounder offers a robust and reliable benchmark sup-
-            porting the future development of audio-visual foundation
-            models.
+            The emergence of audio-visual foundation models underscores the importance 
+            of reliably assessing their multi-modal understanding. The VGGSound<em>er</em> 
+            dataset is commonly used as a benchmark for evaluation audio-visual classification. 
+            However, our analysis identifies several limitations of VGGSound<em>er</em> , 
+            including incomplete labelling, partially overlapping classes, 
+            and misaligned modalities. These lead to distorted evaluations of 
+            auditory and visual capabilities. To address these limitations, we 
+            introduce VGGSound<em>er</em> , a comprehensively re-annotated, multi-label 
+            test set that extends VGGSound and is specifically designed to evaluate 
+            audio-visual foundation models. VGGSound<em>er</em>  features detailed modality 
+            annotations, enabling precise analyses of modality-specific performance. 
+            Furthermore, we reveal model limitations by analysing performance degradation 
+            when adding another input modality with our new modality confusion metric.
           </p>
         </div>
       </div>
@@ -201,25 +194,13 @@
           
           <div class="label-category">
             <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
-              <span class="label visible">sea waves</span>
-            </div>
-          </div>
-          
-          <div class="label-category">
-            <div class="category-header">
               <span class="icon">📹</span>
               <strong>Audible & Visible:</strong>
             </div>
             <div class="labels">
-              <span class="label both">motorboat, speedboat acceleration <span class="badge">Original</span></span>
-              <span class="label both original">rowboat, canoe, kayak rowing </span>
+              <span class="label both">motorboat, speedboat acceleration</span>
               <span class="label both">sloshing water</span>
               <span class="label both">splashing water</span>
-              <span class="label both">spraying water</span>
             </div>
           </div>
         </div>
@@ -302,43 +283,6 @@
         </div>
       </div>
 
-      <div class="video-example">
-        <div class="video-container">
-          <video controls>
-            <source src="./static/videos/1ON1iLkUPp8_000040.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div class="labels-container">
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">🔊</span>
-              <strong>Audible only:</strong>
-            </div>
-            <div class="labels">
-              <span class="label audible">playing bass guitar</span>
-              <span class="label audible">playing electronic organ</span>
-              <span class="label audible">playing glockenspiel</span>
-              <span class="label audible">playing marimba, xylophone</span>
-              <span class="label audible">playing piano</span>
-              <span class="label audible">playing synthesizer</span>
-              <span class="label audible">playing vibraphone <span class="badge">Original</span></span>
-              <span class="label audible">background music <span class="badge">Meta</span></span>
-            </div>
-          </div>
-          
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
-              <span class="label visible">static image <span class="badge">Meta</span></span>
-            </div>
-          </div>
-        
-        </div>
-      </div>
 
       <div class="video-example">
         <div class="video-container">
@@ -354,18 +298,8 @@
               <strong>Audible only:</strong>
             </div>
             <div class="labels">
-              <span class="label audible">male speech, man speaking</span>
+              <span class="label audible">air horn</span>
               <span class="label audible">voice over <span class="badge">Meta</span></span>
-            </div>
-          </div>
-          
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
-              <span class="label visible">playing hockey</span>
             </div>
           </div>
           
@@ -375,9 +309,10 @@
               <strong>Audible & Visible:</strong>
             </div>
             <div class="labels">
-              <span class="label both">people booing</span>
+              <span class="label both">male speech, man speaking</span>
               <span class="label both">people cheering</span>
               <span class="label both">people crowd</span>
+              <span class="label both">playing hockey</span>
             </div>
           </div>
         
@@ -392,24 +327,6 @@
           </video>
         </div>
         <div class="labels-container">
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">🔊</span>
-              <strong>Audible only:</strong>
-            </div>
-            <div class="labels">
-            </div>
-          </div>
-          
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
-            </div>
-          </div>
-          
           <div class="label-category">
             <div class="category-header">
               <span class="icon">📹</span>
@@ -448,7 +365,6 @@
               <span class="label audible">orchestra</span>
               <span class="label audible">playing drum kit</span>
               <span class="label audible">playing flute</span>
-              <span class="label audible">playing snare drum</span>
               <span class="label audible">playing trombone</span>
               <span class="label audible">playing trumpet</span>
               <span class="label audible">playing violin, fiddle</span>
@@ -456,14 +372,6 @@
             </div>
           </div>
           
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
-            </div>
-          </div>
           
           <div class="label-category">
             <div class="category-header">
@@ -472,10 +380,7 @@
             </div>
             <div class="labels">
               <span class="label both">dog barking</span>
-              <span class="label both">dog baying</span>
               <span class="label both">dog bow-wow <span class="badge">Original</span></span>
-              <span class="label both">dog growling</span>
-              <span class="label both">dog howling</span>
             </div>
           </div>
         </div>
@@ -496,21 +401,9 @@
             </div>
             <div class="labels">
               <span class="label audible">cricket chirping</span>
-              <span class="label audible">female speech, woman speaking</span>
-              <span class="label audible">fly, housefly buzzing</span>
-              <span class="label audible">frog croaking</span>
               <span class="label audible">owl hooting <span class="badge">Original</span></span>
               <span class="label audible">wind noise</span>
               <span class="label audible">wind rustling leaves</span>
-            </div>
-          </div>
-          
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
             </div>
           </div>
           
@@ -520,8 +413,8 @@
               <strong>Audible & Visible:</strong>
             </div>
             <div class="labels">
-              <span class="label both">bird chirping, tweeting</span>
               <span class="label both">fire crackling</span>
+              <span class="label audible">female speech, woman speaking</span>
             </div>
           </div>
         </div>
@@ -535,26 +428,6 @@
           </video>
         </div>
         <div class="labels-container">
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">🔊</span>
-              <strong>Audible only:</strong>
-            </div>
-            <div class="labels">
-              <span class="label audible">engine accelerating, revving, vroom</span>
-              <span class="label audible">female speech, woman speaking</span>
-              <span class="label audible">male speech, man speaking</span>
-            </div>
-          </div>
-          
-          <div class="label-category">
-            <div class="category-header">
-              <span class="icon">👁️</span>
-              <strong>Visible only:</strong>
-            </div>
-            <div class="labels">
-            </div>
-          </div>
           
           <div class="label-category">
             <div class="category-header">
@@ -670,8 +543,8 @@
       <img src="./static/images/supporters/ELLIS.png" alt="ELLIS">
     </div>
   </div>
-  <a href="." target="_blank" class="highlight-link">
-    <img src="./static/images/VGGSounder_Preview_Comming.png" class="highlight" alt="Click to view paper">
+  <a href="./static/vggsounder.pdf" target="_blank" class="highlight-link">
+    <img src="./static/images/VGGSounder_Preview.png" class="highlight" alt="Click to view paper">
   </a>
   </section>
 </footer>
