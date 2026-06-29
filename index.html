@@ -18,10 +18,15 @@
   <link rel="icon" href="./static/images/favicon.ico">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script defer src="./static/js/quiz.js"></script>
+  <script defer src="./static/js/confusion-demo.js"></script>
+  <script defer src="./static/js/plots.js"></script>
+  <script defer src="./static/js/scroll-fx.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJN6CJY9SH"></script>
   <script>
@@ -35,7 +40,7 @@
 <body>
 
 <!-- Wrapper -->
-<section class="banner is-flex is-align-items-center is-justify-content-center" style="height: 200px;">
+<section id="top" class="banner is-flex is-align-items-center is-justify-content-center" style="height: 200px;">
   <div class="column has-text-centered">
     <h1 class="title is-1 publication-title"><span id="boar-emoji" class="boar-emoji">🐗</span> VGGSounder: Audio-Visual Evaluations for Foundation Models</h1>
   </div>
@@ -136,38 +141,78 @@
   </div>
 </section>
 
-<section class="section">
+<!-- The problem. -->
+<section class="section" id="problem">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            The emergence of audio-visual foundation models underscores the importance 
-            of reliably assessing their multi-modal understanding. The VGGSound 
-            dataset is commonly used as a benchmark for evaluation audio-visual classification. 
-            However, our analysis identifies several limitations of VGGSound, 
-            including incomplete labelling, partially overlapping classes, 
-            and misaligned modalities. These lead to distorted evaluations of 
-            auditory and visual capabilities. To address these limitations, we 
-            introduce VGGSound<em>er</em>, a comprehensively re-annotated, multi-label 
-            test set that extends VGGSound and is specifically designed to evaluate 
-            audio-visual foundation models. VGGSound<em>er</em> features detailed modality 
-            annotations, enabling precise analyses of modality-specific performance. 
-            Furthermore, we reveal model limitations by analysing performance degradation 
-            when adding another input modality with our new modality confusion metric.
-          </p>
-        </div>
+        <h2 class="title is-3">The problem</h2>
+        <p class="section-intro">
+          Audio-visual foundation models are supposed to understand both what they hear and what
+          they see. But with the standard VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> benchmark, two basic questions are surprisingly
+          hard to answer.
+        </p>
       </div>
     </div>
-    <!--/ Abstract. -->
+    <div class="problem-cards">
+      <div class="problem-card scroll-scale">
+        <div class="problem-num">1</div>
+        <h4>Does the model use audio and video in a <em>balanced</em> way?</h4>
+        <p>Joint audio-visual scores hide whether a model actually listens or just looks. Without
+        per-modality ground truth, a vision-only shortcut looks identical to true multi-modal
+        understanding.</p>
+      </div>
+      <div class="problem-card scroll-scale">
+        <div class="problem-num">2</div>
+        <h4>A clip has many labels — but in <em>which modality</em> does each one exist?</h4>
+        <p>Most videos contain several classes, and many are only audible or only visible. VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a>'s
+        single label per clip can't say where a class appears, or even that the others are there.</p>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <p class="section-intro" style="margin-top:1.5rem;margin-bottom:0;">
+          VGGSound<em>er</em> re-annotates the VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> test set as multi-label, with explicit
+          per-modality and meta-label annotations, so both questions become measurable.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
+<!--/ The problem. -->
 
-<section class="video-examples">
+<!-- Interactive questionnaire (opt-in). -->
+<section class="section" id="try-it">
+  <div class="container is-max-desktop">
+    <details class="try-it-spoiler scroll-scale">
+      <summary>
+        <span class="try-it-emoji">🎬</span>
+        <span class="try-it-text">Can you guess every label in this clip?</span>
+        <span class="try-it-cta">
+          <span class="try-it-cta-full">Try the annotation task</span>
+          <span class="try-it-cta-short">Try</span>
+          <span class="try-it-arrow">▾</span>
+        </span>
+      </summary>
+      <div class="try-it-body">
+        <p class="section-intro">
+          This is the task our Mechanical Turk annotators faced. Watch the clip and decide,
+          for each proposed label, whether it is <strong>audible</strong>, <strong>visible</strong>,
+          both, or neither — then check your answers against VGGSound<em>er</em>'s ground-truth
+          modality annotations.
+        </p>
+        <div class="quiz" id="quiz-app"></div>
+      </div>
+    </details>
+  </div>
+</section>
+<!--/ Interactive questionnaire. -->
+
+<section class="video-examples" id="dataset">
   <div class="container">
-    <h2 class="title is-3 has-text-centered">Samples</h2>
+    <h2 class="title is-3 has-text-centered">Dataset Preview</h2>
+    <p class="carousel-hint">Scroll to explore more samples →</p>
+    <div class="video-carousel-wrap">
     <div class="video-carousel">
 
       <div class="video-example">
@@ -446,8 +491,105 @@
       </div>
 
     </div>
+    </div>
   </div>
 </section>
+
+<!-- VGGSounder vs VGGSound. -->
+<section class="section" id="when-to-use">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">VGGSound<em>er</em> vs VGGSound</h2>
+        <p class="section-intro">
+          Same videos, richer ground truth. VGGSound<em>er</em> re-annotates the VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> test set so
+          you can see not just <em>what</em> is in a clip, but <em>where</em> — in audio, vision, or both.
+        </p>
+      </div>
+    </div>
+    <div class="vs-grid">
+      <div class="vs-card vs-old">
+        <div class="vs-head">
+          <span class="vs-tag">VGGSound</span>
+        </div>
+        <ul class="vs-list">
+          <li><span class="vs-x">✗</span> One single label per clip</li>
+          <li><span class="vs-x">✗</span> No modality information</li>
+          <li><span class="vs-x">✗</span> ~48% of samples are modality-misaligned</li>
+          <li><span class="vs-x">✗</span> No meta-labels for confounders</li>
+          <li><span class="vs-x">✗</span> Co-occurring classes counted as errors</li>
+          <li><span class="vs-check">✓</span> Has both train and test splits</li>
+        </ul>
+      </div>
+      <div class="vs-card vs-new scroll-scale">
+        <div class="vs-head">
+          <span class="vs-tag is-new">VGGSound<em>er</em></span>
+        </div>
+        <ul class="vs-list">
+          <li><span class="vs-check">✓</span> Multi-label: every co-occurring class</li>
+          <li><span class="vs-check">✓</span> Per-label <strong>audible / visible / both</strong></li>
+          <li><span class="vs-check">✓</span> Modality-aligned subsets you can filter to</li>
+          <li><span class="vs-check">✓</span> Meta-labels: background music, voice-over, static image</li>
+          <li><span class="vs-check">✓</span> Synonym &amp; superclass merging</li>
+          <li><span class="vs-x">✗</span> Test split only (re-annotates VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a>'s test set)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="vs-enables">
+      <strong>This unlocks:</strong>
+      <span class="vs-pill">modality profiling</span>
+      <span class="vs-pill">modality confusion</span>
+      <span class="vs-pill">controlled, confounder-free evaluation</span>
+    </p>
+  </div>
+</section>
+<!--/ VGGSounder vs VGGSound. -->
+
+<!-- Interactive modality-confusion demo. -->
+<section class="section confusion-demo" id="modality-confusion">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">What is modality confusion?</h2>
+        <p class="section-intro">
+          From <strong>audio only</strong>, the model predicts <em>“male speech, man speaking”</em> —
+          correct — and never mentions a horse. But in the <strong>multi-modal</strong> setting it
+          <em>stops</em> predicting <em>“male speech, man speaking”</em> and <em>starts</em> predicting
+          <em>“horse clip-clop”</em> instead — the wrong label. Adding a modality overwrote a correct
+          answer rather than improving it. Toggle the input below to see the swap.
+        </p>
+      </div>
+    </div>
+    <div class="confusion-demo-widget" id="confusion-demo-app"></div>
+  </div>
+</section>
+<!--/ Interactive modality-confusion demo. -->
+
+<!-- Modality-confusion charts. -->
+<section class="section" id="confusion-results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Modality confusion across models</h2>
+        <p class="section-intro">
+          VGGSound<em>er</em>'s per-modality annotations let us profile every model — and even
+          surface biases in the data they were trained on.
+        </p>
+      </div>
+    </div>
+    <div class="confusion-charts">
+      <div class="chart-card scroll-scale">
+        <div class="chart-canvas-wrap"><canvas id="mu-chart"></canvas></div>
+        <p class="chart-caption" id="mu-caption"></p>
+      </div>
+      <div class="chart-card scroll-scale">
+        <div class="chart-canvas-wrap"><canvas id="vo-chart"></canvas></div>
+        <p class="chart-caption" id="vo-caption"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Modality-confusion charts. -->
 
 <section class="section">
   <!-- Paper video. -->
@@ -462,7 +604,31 @@
   </div>
   <!--/ Paper video. -->
 </section>
-  
+
+<!-- Abstract (condensed). -->
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> dataset is commonly used to benchmark audio-visual classification, but it
+            suffers from incomplete labelling, partially overlapping classes, and misaligned
+            modalities, which distort evaluations of auditory and visual capabilities. We introduce
+            VGGSound<em>er</em>, a comprehensively re-annotated, multi-label test set that extends
+            VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> and is designed to evaluate audio-visual foundation models. VGGSound<em>er</em>
+            adds detailed per-label modality annotations, enabling precise modality-specific
+            analyses, and we reveal model limitations by measuring the performance degradation that
+            occurs when a second input modality is added — our new <em>modality confusion</em> metric.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Abstract (condensed). -->
+
 <!-- <section class="section" style="background: #f8f9fa;">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">

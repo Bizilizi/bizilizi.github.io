@@ -1,0 +1,15 @@
+{
+  "video": "./static/videos/7I00cZUE0_000064.mp4",
+  "poster": "./static/images/posters/quiz_boat.jpg",
+  "proposals": [
+    { "label": "male speech, man speaking", "audible": true, "visible": false },
+    { "label": "playing bass guitar", "audible": true, "visible": false },
+    { "label": "playing drum kit", "audible": true, "visible": false },
+    { "label": "playing electric guitar", "audible": true, "visible": false },
+    { "label": "sea waves", "audible": false, "visible": true },
+    { "label": "sloshing water", "audible": true, "visible": true },
+    { "label": "splashing water", "audible": true, "visible": true },
+    { "label": "spraying water", "audible": true, "visible": true },
+    { "label": "motorboat, speedboat acceleration", "audible": true, "visible": true }
+  ]
+}

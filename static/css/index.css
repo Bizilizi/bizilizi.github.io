@@ -572,17 +572,21 @@ body {
   }
   
   .label {
-    font-size: 13px;          /* Larger text for mobile */
-    height: 26px;             /* Let line-height control height */
-    display: inline-block;
+    font-size: 12px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    min-height: 0;
     padding-left: 8px;
     padding-right: 8px;
   }
-  
+
   .badge {
     font-size: 8px;
     padding: 2px 6px;
-    height: 10px;
+    height: 14px;
   }
 }
 
@@ -590,20 +594,20 @@ body {
   .video-example {
     flex: 0 0 280px;           /* Even smaller on phones */
   }
-  
+
   .video-container {
     height: 160px;
   }
-  
+
   .labels-container {
     padding: 12px;
   }
-  
+
   .label {
-    font-size: 14px;          /* Larger for small screens */
-    height: 34px;
-    padding-left: 12px;
-    padding-right: 12px;
+    font-size: 12px;
+    height: 26px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
@@ -751,8 +755,10 @@ body {
 
 /* General mobile touch improvements */
 @media (max-width: 768px) {
-  /* Ensure all clickable elements meet minimum touch target size */
-  a, button, .label, .button {
+  /* Ensure all clickable elements meet minimum touch target size.
+     NOTE: .label is excluded — dataset tags aren't tap targets and the
+     44px minimum balloons them into oversized boxes. */
+  a:not(.vgg-nav-links a), button, .button {
     min-height: 44px;
     min-width: 44px;
   }
@@ -830,17 +836,763 @@ body {
     font-size: 1.2rem !important;
     line-height: 1.1 !important;
   }
-  
+
   .video-example {
     flex: 0 0 260px;
   }
-  
+
   .video-container {
     height: 146px;
   }
-  
+
   .highlight-link {
     width: min(50%, 160px);
     right: 2%;
   }
 }
+
+/* =========================================================================
+   Interactive sections (questionnaire, when-to-use, confusion demo, charts)
+   Reuses the existing label colour system (.label.audible/.visible/.both).
+   ========================================================================= */
+
+.section-intro {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  color: #4a4a4a;
+}
+
+/* inline citation link, e.g. VGGSound [1] */
+.cite {
+  color: #3273dc;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cite:hover { text-decoration: underline; }
+
+/* elements that gently scale toward the viewport centre on scroll */
+.scroll-scale { will-change: transform; }
+
+/* ---- The problem (two question cards) --------------------------------- */
+.problem-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.problem-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-top: 4px solid #3273dc;
+}
+
+.problem-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #3273dc;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.problem-card h4 {
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.problem-card p {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.55;
+}
+
+/* ---- Opt-in questionnaire spoiler ------------------------------------- */
+.try-it-spoiler {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(50, 115, 220, 0.18);
+  animation: tryItGlow 2.2s ease-in-out infinite;
+}
+
+/* Animated light stroke travelling around the border (conic gradient masked
+   to a thin ring). Loops until the section is opened. */
+@property --vgg-stroke-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.try-it-spoiler::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2.5px;               /* stroke thickness */
+  background: conic-gradient(
+    from var(--vgg-stroke-angle),
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0) 60deg,
+    rgba(190, 210, 255, 0.85) 80deg,
+    rgba(255, 255, 255, 1) 96deg,       /* bright leading edge */
+    rgba(255, 255, 255, 1) 104deg,
+    rgba(205, 180, 255, 0.85) 120deg,
+    rgba(255, 255, 255, 0) 150deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+  /* show only the padding ring */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.85));
+  pointer-events: none;
+  z-index: 2;
+  animation: vggStrokeSpin 3s linear infinite;
+}
+
+@keyframes vggStrokeSpin {
+  to { --vgg-stroke-angle: 360deg; }
+}
+
+/* stop the stroke once the questionnaire is opened */
+.try-it-spoiler[open]::before {
+  animation: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .try-it-spoiler::before { animation: none; opacity: 0; }
+}
+
+/* Pulsing glow to draw attention; stops once opened or hovered. */
+@keyframes tryItGlow {
+  0%, 100% { box-shadow: 0 6px 20px rgba(50, 115, 220, 0.25); }
+  50%      { box-shadow: 0 8px 30px rgba(106, 92, 255, 0.6); }
+}
+
+.try-it-spoiler:hover,
+.try-it-spoiler[open] {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .try-it-spoiler { animation: none; }
+}
+
+.try-it-spoiler > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem;
+  background: linear-gradient(120deg, #3273dc, #6a5cff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.try-it-spoiler > summary::-webkit-details-marker { display: none; }
+
+.try-it-emoji { font-size: 1.5rem; }
+
+.try-it-text { flex: 1; }
+
+.try-it-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.try-it-spoiler > summary:hover .try-it-cta {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.try-it-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+/* full label on desktop, short "Try" on mobile */
+.try-it-cta-short { display: none; }
+
+.try-it-spoiler[open] > summary { box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.25); }
+.try-it-spoiler[open] .try-it-arrow { transform: rotate(180deg); }
+
+.try-it-body {
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #e6ebf5;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+}
+
+@media (max-width: 768px) {
+  .try-it-spoiler > summary { font-size: 1rem; padding: 0.9rem 1rem; }
+  .try-it-cta-full { display: none; }
+  .try-it-cta-short { display: inline; }
+}
+
+/* ---- Interactive questionnaire ---------------------------------------- */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.quiz-video video {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  background: #000;
+}
+
+.quiz-hint {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.quiz-form {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem 1.25rem;
+}
+
+.quiz-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px 90px;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.quiz-row.quiz-head {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #888;
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.quiz-label-cell {
+  font-size: 0.9rem;
+}
+
+/* when graded, the label cell becomes a coloured modality tag */
+.quiz-label-cell.label {
+  display: inline-flex;
+  width: fit-content;
+  height: auto;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+}
+
+.quiz-label-cell.neither {
+  background-color: #f0f0f0;
+  color: #777;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.quiz-truth {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.quiz-check-cell {
+  text-align: center;
+  position: relative;
+}
+
+.quiz-check-cell input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #3273dc;
+}
+
+.quiz-mark {
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+.quiz-mark.is-right { color: #2bae66; }
+.quiz-mark.is-wrong { color: #e0566b; }
+
+.quiz-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.quiz-result {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.quiz-result .label {
+  height: auto;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+}
+
+.quiz-result.is-good { background: #e9f8ef; color: #1f7a4d; }
+.quiz-result.is-mid  { background: #fff7e6; color: #9a6a00; }
+.quiz-result.is-low  { background: #fdecee; color: #a33245; }
+
+/* ---- When to use cards ------------------------------------------------- */
+.when-to-use {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.wtu-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+  border-top: 4px solid #3273dc;
+}
+
+.wtu-card .wtu-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.wtu-card h4 {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #222;
+}
+
+.wtu-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ---- Modality-confusion demo ------------------------------------------ */
+.confusion-demo { background: #f8f9fa; }
+
+.cdemo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.cdemo-video video {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  background: #000;
+}
+
+.cdemo-model { margin-bottom: 0.6rem; color: #444; }
+
+.cdemo-toggle {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #d6d9e0;
+  margin-bottom: 1.25rem;
+}
+
+.cdemo-btn {
+  border: none;
+  border-radius: 0 !important;
+  background: #fff;
+  color: #555;
+  font-weight: 600;
+}
+
+.cdemo-btn:not(:last-child) { border-right: 1px solid #d6d9e0; }
+
+.cdemo-btn.is-active {
+  background: #3273dc;
+  color: #fff;
+}
+
+.cdemo-output {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+}
+
+.cdemo-output-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: #999;
+}
+
+.cdemo-preds {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.cdemo-pred {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, opacity 0.35s ease;
+}
+
+.cdemo-pred-text { transition: text-decoration-color 0.2s ease; }
+
+.cdemo-pred-state {
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* correct & present */
+.cdemo-pred.is-correct {
+  background: #e9f8ef;
+  color: #1f7a4d;
+  border-color: #bfe8cf;
+}
+
+/* wrong & present (the label the model gains) — pops in to draw the eye */
+.cdemo-pred.is-wrong {
+  background: #fdecee;
+  color: #a33245;
+  border-color: #f6c9d0;
+  animation: cdemoPop 0.4s ease;
+}
+
+/* a correct label the model lost when the modality was added */
+.cdemo-pred.is-dropped {
+  background: #faf0f1;
+  color: #b06277;
+  border-color: #efd6db;
+  opacity: 0.85;
+}
+
+.cdemo-pred.is-dropped .cdemo-pred-text {
+  text-decoration: line-through;
+}
+
+/* never predicted in this mode */
+.cdemo-pred.is-absent {
+  background: #f4f5f7;
+  color: #9aa0aa;
+  border-color: #e7e9ed;
+  opacity: 0.8;
+}
+
+@keyframes cdemoPop {
+  0%   { transform: scale(0.96); }
+  55%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cdemo-pred.is-wrong { animation: none; }
+}
+
+.cdemo-note {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---- Charts ------------------------------------------------------------ */
+.confusion-charts {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+  min-width: 0;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+  border-top: 4px solid #3273dc;
+  min-width: 0;            /* allow the card to shrink below canvas intrinsic width */
+  overflow: hidden;
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  height: 360px;
+  width: 100%;
+  min-width: 0;
+}
+
+.chart-canvas-wrap canvas {
+  max-width: 100% !important;
+}
+
+.chart-caption {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ---- Mobile ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .quiz-grid,
+  .cdemo-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .quiz-row {
+    grid-template-columns: minmax(0, 1fr) 64px 64px;
+  }
+
+  .chart-canvas-wrap { height: 300px; }
+
+  .cdemo-toggle { width: 100%; }
+  .cdemo-btn { flex: 1; }
+}
+
+/* =========================================================================
+   Page-level polish: nav, smooth scroll, anchor offsets, overflow guard
+   ========================================================================= */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+
+/* keep section headings clear of the sticky nav when jumped to */
+section[id] { scroll-margin-top: 64px; }
+
+/* ---- Sticky section nav ----------------------------------------------- */
+.vgg-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.vgg-nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 1.25rem;
+}
+
+.vgg-nav-brand {
+  font-weight: 700;
+  color: #222;
+  white-space: nowrap;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.vgg-nav-links {
+  display: flex;
+  gap: 1.1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.vgg-nav-links::-webkit-scrollbar { display: none; }
+
+.vgg-nav-links a {
+  color: #555;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.2rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.vgg-nav-links a:hover {
+  color: #3273dc;
+  border-bottom-color: #3273dc;
+}
+
+/* ---- VGGSounder vs VGGSound contrast ---------------------------------- */
+.vs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.vs-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.vs-card.vs-old { border-top: 4px solid #c9ccd4; }
+.vs-card.vs-new { border-top: 4px solid #2bae66; }
+
+.vs-head { margin-bottom: 0.75rem; }
+
+.vs-tag {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #888;
+}
+
+.vs-tag.is-new { color: #1f7a4d; }
+
+.vs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vs-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.4rem 0;
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: #444;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.vs-list li:last-child { border-bottom: none; }
+
+.vs-x, .vs-check {
+  font-weight: 700;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.vs-x { color: #c0566b; }
+.vs-check { color: #2bae66; }
+
+.vs-old .vs-list li { color: #888; }
+
+.vs-enables {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.vs-pill {
+  display: inline-block;
+  background: #eef2fd;
+  color: #2c4a9a;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.2rem 0.2rem;
+}
+
+/* ---- Dataset carousel scroll affordance ------------------------------- */
+.carousel-hint {
+  text-align: center;
+  color: #888;
+  font-size: 0.85rem;
+  margin: -0.5rem 0 0.75rem;
+}
+
+.video-carousel-wrap {
+  position: relative;
+}
+
+/* right-edge fade hinting more content */
+.video-carousel-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 56px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 0.95));
+}
+
+/* ---- Mobile overflow + spacing fixes ---------------------------------- */
+@media (max-width: 768px) {
+  .vs-grid { grid-template-columns: 1fr; }
+
+  /* keep the demo modality toggle inside the viewport */
+  .cdemo-toggle { width: 100%; display: flex; }
+  .cdemo-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 0.82rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    white-space: nowrap;
+  }
+
+  /* prevent the long hero title from overflowing sideways */
+  .banner .title.is-1,
+  .publication-title {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .carousel-hint { font-size: 0.8rem; }
+
+  /* on small screens drop the brand and use a single scrollable row of links */
+  .vgg-nav-brand { display: none; }
+  .vgg-nav-inner { justify-content: flex-start; padding: 0.45rem 0.9rem; }
+  .vgg-nav-links { width: 100%; gap: 1.15rem; }
+}
+
+/* ---- Vertical rhythm tweaks ------------------------------------------- */
+#problem { padding-bottom: 2rem; }
+#try-it { padding-top: 1rem; padding-bottom: 2.75rem; }
