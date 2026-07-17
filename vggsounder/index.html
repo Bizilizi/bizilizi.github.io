@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VGGSounder, a multi-label audio-visual classification dataset with modality annotations.">
+  <meta name="keywords" content="VGGSounder, Audio-Visual Benchmark, Foundation Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VGGSounder: Audio-Visual Evaluations for Foundation Models</title>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script defer src="./static/js/quiz.js"></script>
+  <script defer src="./static/js/confusion-demo.js"></script>
+  <script defer src="./static/js/plots.js"></script>
+  <script defer src="./static/js/scroll-fx.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJN6CJY9SH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KJN6CJY9SH');
+  </script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<section id="top" class="banner is-flex is-align-items-center is-justify-content-center" style="height: 200px;">
+  <div class="column has-text-centered">
+    <h1 class="title is-1 publication-title"><span id="boar-emoji" class="boar-emoji">🐗</span> VGGSounder: Audio-Visual Evaluations for Foundation Models</h1>
+  </div>
+</section>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- <h1 class="title is-1 publication-title"><span id="boar-emoji" class="boar-emoji">🐗</span> VGGSounder: Audio-Visual Evaluations for Foundation Models</h1> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://dzverev.com">Daniil Zverev</a><sup>*,1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=aeCiRSYAAAAJ&hl=en">Thaddäus Wiedemer</a><sup>*,2,3,4</sup>,</span>
+            <span class="author-block">
+              <a href="https://drimpossible.github.io/">Ameya Prabhu</a><sup>2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://bethgelab.org/">Matthias Bethge</a><sup>2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://is.mpg.de/robustml/person/wbrendel">Wieland Brendel</a><sup>3,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://akoepke.github.io/">A. Sophia Koepke</a><sup>1,2,3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Technical University of Munich, MCML</span>
+            <span class="author-block"><sup>2</sup>University of Tübingen</span>
+            <span class="author-block"><sup>3</sup>Tübingen AI Center</span>
+            <span class="author-block"><sup>4</sup>MPI for Intelligent Systems, ELLIS Institute Tübingen</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contributors</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/vggsounder.pdf" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2508.08237"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/Ab4G6q_y8rs"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Bizilizi/VGGSounder"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The problem. -->
+<section class="section" id="problem">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">The problem</h2>
+        <p class="section-intro">
+          Audio-visual foundation models are supposed to understand both what they hear and what
+          they see. But with the standard VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> benchmark, two basic questions are surprisingly
+          hard to answer.
+        </p>
+      </div>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card scroll-scale">
+        <div class="problem-num">1</div>
+        <h4>Does the model use audio and video in a <em>balanced</em> way?</h4>
+        <p>Joint audio-visual scores hide whether a model actually listens or just looks. Without
+        per-modality ground truth, a vision-only shortcut looks identical to true multi-modal
+        understanding.</p>
+      </div>
+      <div class="problem-card scroll-scale">
+        <div class="problem-num">2</div>
+        <h4>A clip has many labels — but in <em>which modality</em> does each one exist?</h4>
+        <p>Most videos contain several classes, and many are only audible or only visible. VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a>'s
+        single label per clip can't say where a class appears, or even that the others are there.</p>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <p class="section-intro" style="margin-top:1.5rem;margin-bottom:0;">
+          VGGSound<em>er</em> re-annotates the VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> test set as multi-label, with explicit
+          per-modality and meta-label annotations, so both questions become measurable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ The problem. -->
+
+<!-- Interactive questionnaire (opt-in). -->
+<section class="section" id="try-it">
+  <div class="container is-max-desktop">
+    <details class="try-it-spoiler scroll-scale">
+      <summary>
+        <span class="try-it-emoji">🎬</span>
+        <span class="try-it-text">Can you guess every label in this clip?</span>
+        <span class="try-it-cta">
+          <span class="try-it-cta-full">Try the annotation task</span>
+          <span class="try-it-cta-short">Try</span>
+          <span class="try-it-arrow">▾</span>
+        </span>
+      </summary>
+      <div class="try-it-body">
+        <p class="section-intro">
+          This is the task our Mechanical Turk annotators faced. Watch the clip and decide,
+          for each proposed label, whether it is <strong>audible</strong>, <strong>visible</strong>,
+          both, or neither — then check your answers against VGGSound<em>er</em>'s ground-truth
+          modality annotations.
+        </p>
+        <div class="quiz" id="quiz-app"></div>
+      </div>
+    </details>
+  </div>
+</section>
+<!--/ Interactive questionnaire. -->
+
+<section class="video-examples" id="dataset">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Dataset Preview</h2>
+    <p class="carousel-hint">Scroll to explore more samples →</p>
+    <div class="video-carousel-wrap">
+    <div class="video-carousel">
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/7I00cZUE0_000064.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">male speech, man speaking</span>
+              <span class="label audible">playing bass guitar</span>
+              <span class="label audible">playing drum kit</span>
+              <span class="label audible">playing electric guitar</span>
+              <span class="label audible meta">background music <span class="badge">Meta</span></span>
+              <span class="label audible meta">voice over <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">motorboat, speedboat acceleration <span class="badge">Original</span></span>
+              <span class="label both">sloshing water</span>
+              <span class="label both">splashing water</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/-0p7hKXZ1ww_000030.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">people sniggering</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both original">fireworks banging</span>
+              <span class="label both">footsteps on snow</span>
+            <span class="label both">lighting firecrackers <span class="badge">Original</span></span>
+            <span class="label both">male speech, man speaking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/1LTxZ2aNytc_000030.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">people belly laughing</span>
+              <span class="label audible">people sniggering</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">👁️</span>
+              <strong>Visible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label visible">splashing water</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both original">dog barking</span>
+              <span class="label both">dog bow-wow</span>
+            <span class="label both">goat bleating</span>
+            <span class="label both">sea lion barking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/1Z9lTtd7ReE_000014.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">air horn</span>
+              <span class="label audible">voice over <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">male speech, man speaking</span>
+              <span class="label both">people cheering</span>
+              <span class="label both">people crowd</span>
+              <span class="label both">playing hockey</span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/2zSnJX82Uzc_000060.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">child speech, kid speaking</span>
+              <span class="label both">children shouting</span>
+              <span class="label both">male speech, man speaking</span>
+              <span class="label both">people belly laughing</span>
+              <span class="label both">people cheering</span>
+              <span class="label both">people crowd</span>
+              <span class="label both">people screaming</span>
+              <span class="label both">people sniggering</span>
+              <span class="label both">sloshing water <span class="badge">Original</span></span>
+              <span class="label both">swimming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/5NyjOIjRKKM_000018.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">orchestra</span>
+              <span class="label audible">playing drum kit</span>
+              <span class="label audible">playing flute</span>
+              <span class="label audible">playing trombone</span>
+              <span class="label audible">playing trumpet</span>
+              <span class="label audible">playing violin, fiddle</span>
+              <span class="label audible meta">background music <span class="badge">Meta</span></span>
+            </div>
+          </div>
+          
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">dog barking</span>
+              <span class="label both">dog bow-wow <span class="badge">Original</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/6xlLMbiEsIM_000030.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">🔊</span>
+              <strong>Audible only:</strong>
+            </div>
+            <div class="labels">
+              <span class="label audible">cricket chirping</span>
+              <span class="label audible">owl hooting <span class="badge">Original</span></span>
+              <span class="label audible">wind noise</span>
+              <span class="label audible">wind rustling leaves</span>
+            </div>
+          </div>
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">fire crackling</span>
+              <span class="label audible">female speech, woman speaking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-example">
+        <div class="video-container">
+          <video controls>
+            <source src="./static/videos/M5rWO2qL6WQ_000023.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="labels-container">
+          
+          <div class="label-category">
+            <div class="category-header">
+              <span class="icon">📹</span>
+              <strong>Audible & Visible:</strong>
+            </div>
+            <div class="labels">
+              <span class="label both">motorboat, speedboat acceleration <span class="badge">Original</span></span>
+              <span class="label both original">people screaming</span>
+              <span class="label both">rowboat, canoe, kayak rowing</span>
+              <span class="label both">splashing water</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- VGGSounder vs VGGSound. -->
+<section class="section" id="when-to-use">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">VGGSound<em>er</em> vs VGGSound</h2>
+        <p class="section-intro">
+          Same videos, richer ground truth. VGGSound<em>er</em> re-annotates the VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> test set so
+          you can see not just <em>what</em> is in a clip, but <em>where</em> — in audio, vision, or both.
+        </p>
+      </div>
+    </div>
+    <div class="vs-grid">
+      <div class="vs-card vs-old">
+        <div class="vs-head">
+          <span class="vs-tag">VGGSound</span>
+        </div>
+        <ul class="vs-list">
+          <li><span class="vs-x">✗</span> One single label per clip</li>
+          <li><span class="vs-x">✗</span> No modality information</li>
+          <li><span class="vs-x">✗</span> ~48% of samples are modality-misaligned</li>
+          <li><span class="vs-x">✗</span> No meta-labels for confounders</li>
+          <li><span class="vs-x">✗</span> Co-occurring classes counted as errors</li>
+          <li><span class="vs-check">✓</span> Has both train and test splits</li>
+        </ul>
+      </div>
+      <div class="vs-card vs-new scroll-scale">
+        <div class="vs-head">
+          <span class="vs-tag is-new">VGGSound<em>er</em></span>
+        </div>
+        <ul class="vs-list">
+          <li><span class="vs-check">✓</span> Multi-label: every co-occurring class</li>
+          <li><span class="vs-check">✓</span> Per-label <strong>audible / visible / both</strong></li>
+          <li><span class="vs-check">✓</span> Modality-aligned subsets you can filter to</li>
+          <li><span class="vs-check">✓</span> Meta-labels: background music, voice-over, static image</li>
+          <li><span class="vs-check">✓</span> Synonym &amp; superclass merging</li>
+          <li><span class="vs-x">✗</span> Test split only (re-annotates VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a>'s test set)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="vs-enables">
+      <strong>This unlocks:</strong>
+      <span class="vs-pill">modality profiling</span>
+      <span class="vs-pill">modality confusion</span>
+      <span class="vs-pill">controlled, confounder-free evaluation</span>
+    </p>
+  </div>
+</section>
+<!--/ VGGSounder vs VGGSound. -->
+
+<!-- Interactive modality-confusion demo. -->
+<section class="section confusion-demo" id="modality-confusion">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">What is modality confusion?</h2>
+        <p class="section-intro">
+          From <strong>audio only</strong>, the model predicts <em>“male speech, man speaking”</em> —
+          correct — and never mentions a horse. But in the <strong>multi-modal</strong> setting it
+          <em>stops</em> predicting <em>“male speech, man speaking”</em> and <em>starts</em> predicting
+          <em>“horse clip-clop”</em> instead — the wrong label. Adding a modality overwrote a correct
+          answer rather than improving it. Toggle the input below to see the swap.
+        </p>
+      </div>
+    </div>
+    <div class="confusion-demo-widget" id="confusion-demo-app"></div>
+  </div>
+</section>
+<!--/ Interactive modality-confusion demo. -->
+
+<!-- Modality-confusion charts. -->
+<section class="section" id="confusion-results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Modality confusion across models</h2>
+        <p class="section-intro">
+          VGGSound<em>er</em>'s per-modality annotations let us profile every model — and even
+          surface biases in the data they were trained on.
+        </p>
+      </div>
+    </div>
+    <div class="confusion-charts">
+      <div class="chart-card scroll-scale">
+        <div class="chart-canvas-wrap"><canvas id="mu-chart"></canvas></div>
+        <p class="chart-caption" id="mu-caption"></p>
+      </div>
+      <div class="chart-card scroll-scale">
+        <div class="chart-canvas-wrap"><canvas id="vo-chart"></canvas></div>
+        <p class="chart-caption" id="vo-caption"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Modality-confusion charts. -->
+
+<section class="section">
+  <!-- Paper video. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Video</h2>
+      <div class="publication-video">
+        <iframe src="https://www.youtube.com/embed/Ab4G6q_y8rs?rel=0&amp;showinfo=0"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!--/ Paper video. -->
+</section>
+
+<!-- Abstract (condensed). -->
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> dataset is commonly used to benchmark audio-visual classification, but it
+            suffers from incomplete labelling, partially overlapping classes, and misaligned
+            modalities, which distort evaluations of auditory and visual capabilities. We introduce
+            VGGSound<em>er</em>, a comprehensively re-annotated, multi-label test set that extends
+            VGGSound&nbsp;<a class="cite" href="https://arxiv.org/abs/2004.14368" target="_blank" rel="noopener">[1]</a> and is designed to evaluate audio-visual foundation models. VGGSound<em>er</em>
+            adds detailed per-label modality annotations, enabling precise modality-specific
+            analyses, and we reveal model limitations by measuring the performance degradation that
+            occurs when a second input modality is added — our new <em>modality confusion</em> metric.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Abstract (condensed). -->
+
+<!-- <section class="section" style="background: #f8f9fa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified" style="margin-bottom: 2rem;">
+          <p>
+            We report multi-label classification metrics (subset accuracy, F₁-score, Hit accuracy, modality confusion (μ)) for audio (<em>A</em>), visual (<em>V</em>), audio-visual (<em>AV</em>), audio-only (<em>A¬V</em>), and visual-only (<em>V¬A</em>) inputs. The embedding models CAV-MAE, DeepAVFusion, and Equi-AV were fine-tuned on the VGGSound training set. We report metrics for k=1 here and for other k in the additional quantitative analysis section. The closed-source multi-modal foundation models Gemini and open-sourced models use a zero-shot evaluation protocol and LLM-assisted protocol respectively.
+          </p>
+        </div>
+        <div class="table-gallery-nav" style="margin-bottom: 2rem;">
+          <div class="tabs is-centered is-boxed">
+
+            <ul>
+              <li class="is-active" data-table="main-results">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-chart-bar"></i></span>
+                  <span>Main Results</span>
+                </a>
+              </li>
+              <li data-table="no-background-music">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-layer-group"></i></span>
+                  <span>Without Background Music</span>
+                </a>
+              </li>
+              <li data-table="no-voice-over">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-eye"></i></span>
+                  <span>Without Voice Over</span>
+                </a>
+              </li>
+              <li data-table="no-static-image">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-eye"></i></span>
+                  <span>Without Static Image</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-gallery-content">
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{zverevwiedemer2025vggsounder,
+  author    = {Daniil Zverev and Thaddäus Wiedemer and Ameya Prabhu and Matthias Bethge and Wieland Brendel and A. Sophia Koepke},
+  title     = {VGGSounder: Audio-Visual Evaluations for Foundation Models},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2025}
+}</code></pre>
+  </div>
+</section>
+
+<footer>
+  <section class="banner">
+    <!-- Scrolling images -->
+  <div class="scrolling-container">
+    <div class="scrolling-images">
+      <img src="./static/images/supporters/TUM.png" alt="TUM">
+      <img src="./static/images/supporters/Tubingen.png" alt="Tübingen">
+      <img src="./static/images/supporters/MCML.png" alt="MCML">
+      <img src="./static/images/supporters/Max Plank.png" alt="Max Planck">
+      <img src="./static/images/supporters/ELLIS.png" alt="ELLIS">
+      <!-- Duplicate for seamless loop -->
+      <img src="./static/images/supporters/TUM.png" alt="TUM">
+      <img src="./static/images/supporters/Tubingen.png" alt="Tübingen">
+      <img src="./static/images/supporters/MCML.png" alt="MCML">
+      <img src="./static/images/supporters/Max Plank.png" alt="Max Planck">
+      <img src="./static/images/supporters/ELLIS.png" alt="ELLIS">
+    </div>
+  </div>
+  <a href="./static/vggsounder.pdf" target="_blank" class="highlight-link">
+    <img src="./static/images/VGGSounder_Preview.png" class="highlight" alt="Click to view paper">
+  </a>
+  </section>
+</footer>
+
+</body>
+</html>

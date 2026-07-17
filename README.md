@@ -1,16 +1,12 @@
-# Nerfies
+# dzverev — personal website
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
+Personal academic website of Daniil Zverev, served via GitHub Pages.
 
-If you find Nerfies useful for your work please cite:
-```
-@article{park2021nerfies
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}
-```
+- `index.html` — the homepage (bio, news, publications). Self-contained: styles and the
+  bibtex-toggle script are embedded, assets live in `images/`.
+- `vggsounder/` — the project page for *VGGSounder: Audio-Visual Evaluations for Foundation
+  Models* (ICCV 2025), based on the [Nerfies](https://nerfies.github.io) template
+  (CC BY-SA 4.0).
 
-# Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+To add a publication, copy one of the `<div class="pub">` blocks in `index.html` and drop a
+thumbnail into `images/` (~480×330 or any ~3:2 image).
