@@ -84,11 +84,10 @@
     .news dd { margin: 0; }
 
     /* Publications */
-    .pub { display: flex; gap: 1.5rem; margin-bottom: 2.1rem; }
+    .pub { display: flex; gap: 1.5rem; margin-bottom: 2.1rem; align-items: flex-start; }
     .pub-thumb {
       width: 195px; max-width: 34vw;
-      aspect-ratio: 480 / 330;
-      object-fit: cover;
+      height: auto;
       border-radius: 10px;
       border: 1px solid var(--rule);
       flex-shrink: 0;
@@ -184,7 +183,7 @@
     <h2>Publications</h2>
 
     <div class="pub">
-      <img class="pub-thumb" src="./images/plato-cave.svg" alt="Abstract illustration of Plato's cave">
+      <img class="pub-thumb" src="./images/plato-cave.png" alt="Abstract illustration of Plato's cave">
       <div class="pub-body">
         <p class="pub-title">Back into Plato's Cave: Examining Cross-modal Representational Convergence at Scale</p>
         <p class="pub-authors">
